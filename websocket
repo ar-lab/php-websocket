@@ -1,0 +1,21 @@
+#!/usr/bin/php
+<?php
+
+require_once 'classes/Server.php';
+require_once 'classes/Worker.php';
+require_once 'classes/Handler.php';
+require_once 'classes/Log.php';
+
+$websocketServer = new Server('0.0.0.0', '8000');
+$websocketServer->setLocalServer('127.0.0.1', '8010');
+
+if (php_sapi_name() == 'cli') {
+    $options = getopt('f');
+    if ($options !== false && isset($options['f'])) {
+        $websocketServer->daemonize();
+    } else {
+        $websocketServer->start();
+    }
+} else {
+    $websocketServer->start();
+}
