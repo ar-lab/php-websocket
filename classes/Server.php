@@ -3,7 +3,7 @@
 class Server
 {
 
-    const PIDFILE = "/tmp/websocket.pid";
+    const PIDFILE = "/var/run/websocket/websocket.pid";
 
     private $_host;
     private $_port;
